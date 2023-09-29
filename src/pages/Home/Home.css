@@ -30,3 +30,11 @@
   justify-content: center;
   gap: 6px;
 }
+
+.Home--buttons-container {
+  padding: 4px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}

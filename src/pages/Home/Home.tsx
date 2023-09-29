@@ -9,9 +9,11 @@ import { BASE_URL, IMAGE_URL } from '../../utils/constant';
 import { capitalize, getPokemonIdFromUrl } from '../../utils/helpers';
 
 import './Home.css';
+import { nextPage, previousPage } from '../../store/currentPageReducer';
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const currentPage = useSelector((state: RootState) => state.currentPage);
   const pokemons = useSelector((state: RootState) => state.pokemons);
 
   const selectedPokemon = useSelector(
@@ -48,6 +50,24 @@ export const Home = () => {
       </section>
       <section className="Home--right-container">
         <Outlet />
+        <div className="Home--buttons-container">
+          <button
+            disabled={currentPage === 1}
+            type="button"
+            onClick={() => dispatch(previousPage())}
+          >
+            Previous Page
+          </button>
+
+          <h4>Page {currentPage} out of 8</h4>
+          <button
+            disabled={currentPage === 8}
+            type="button"
+            onClick={() => dispatch(nextPage())}
+          >
+            Next Page
+          </button>
+        </div>
       </section>
     </div>
   );

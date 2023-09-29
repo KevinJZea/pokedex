@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { NotFound } from './pages/NotFound/NotFound';
 import { PokemonProfile } from './components/PokemonProfile/PokemonProfile';
@@ -11,9 +11,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home />}
+          element={<Navigate to="/pokemons" />}
         />
-        <Route path="/pokemons" element={<Home />}>
+        <Route
+          path="/pokemons"
+          element={<Home />}
+        >
           <Route
             index
             element={<PokemonsList />}
