@@ -1,0 +1,17 @@
+.PokemonCard {
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  padding: 4px 8px;
+  max-height: 50px;
+  box-shadow: #ddd 2px 2px 2px;
+}
+
+.PokemonCard.active {
+  background-color: #ccc;
+}
+
+.PokemonCard--pokeball {
+  height: 20px;
+}
