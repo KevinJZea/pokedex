@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
 import { NotFound } from './pages/NotFound/NotFound';
 import { PokemonProfile } from './components/PokemonProfile/PokemonProfile';
-import { PokemonsList } from './components/PokemonsList/PokemonsList';
+
 import './App.css';
+import { PokemonsListPage } from './pages/PokemonsListPage/PokemonsListPage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         >
           <Route
             index
-            element={<PokemonsList />}
+            element={<PokemonsListPage />}
           />
           <Route
             path=":id"

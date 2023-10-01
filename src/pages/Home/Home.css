@@ -1,40 +1,41 @@
 .Home--main-container {
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 }
 
 .Home--left-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   justify-content: center;
   align-items: center;
-  box-shadow: #d3d3d3 4px 4px 4px;
-  background-color: #f8f8f8;
-  z-index: 1;
 }
 
 .Home--right-container {
-  background-color: #fff;
   position: relative;
   height: 100%;
   padding-left: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
 }
 
-.Home--buttons-container {
-  padding: 4px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+@media (min-width: 770px) {
+  .Home--main-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 24px;
+  }
+
+  .Home--left-container {
+    box-shadow: #d3d3d3 4px 4px 4px;
+    background-color: #f8f8f8;
+    z-index: 1;
+  }
+
+  .Home--right-container {
+    background-color: #fff;
+  }
 }

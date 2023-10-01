@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BASE_URL } from '../utils/constant';
+import { BASE_URL } from '../utils/constants';
 
 const initialState: Pokemon = { name: 'Pikachu', url: `${BASE_URL}/25/` };
 

@@ -1,0 +1,29 @@
+.PokemonsListPage--main-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+}
+
+.PokemonsListPage--outer-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.PokemonsListPage--buttons-container {
+  position: relative;
+  padding: 4px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+@media (min-width: 770px) {
+  .PokemonsListPage--main-container {
+    display: grid;
+    grid-template-rows: 1fr 120px;
+  }
+}

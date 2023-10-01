@@ -3,18 +3,20 @@ import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../store/store';
-import { addInitialPokemons } from '../../store/pokemonsReducer';
+import { setDisplayedPokemons } from '../../store/displayedPokemonsReducer';
 
-import { BASE_URL, IMAGE_URL } from '../../utils/constant';
+import { IMAGE_URL } from '../../utils/constants';
 import { capitalize, getPokemonIdFromUrl } from '../../utils/helpers';
+import { getPokemons } from '../../utils/services';
 
 import './Home.css';
-import { nextPage, previousPage } from '../../store/currentPageReducer';
 
 export const Home = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state: RootState) => state.currentPage);
-  const pokemons = useSelector((state: RootState) => state.pokemons);
+  const displayedPokemons = useSelector(
+    (state: RootState) => state.displayedPokemons
+  );
 
   const selectedPokemon = useSelector(
     (state: RootState) => state.selectedPokemon
@@ -25,16 +27,18 @@ export const Home = () => {
 
   useEffect(() => {
     const callApi = async () => {
-      const response = await fetch(BASE_URL);
-      const data = await response.json();
-      dispatch(addInitialPokemons(data.results));
+      const pokemons = await getPokemons(currentPage);
+      dispatch(setDisplayedPokemons(pokemons));
     };
-
-    if (isFirstRender.current && pokemons.length === 0) {
+    if (isFirstRender.current && displayedPokemons.length === 0) {
       isFirstRender.current = false;
       callApi();
     }
-  }, [dispatch, isFirstRender, pokemons]);
+
+    if (!isFirstRender.current && displayedPokemons.length > 0) {
+      callApi();
+    }
+  }, [dispatch, isFirstRender, displayedPokemons, currentPage]);
 
   return (
     <div className="Home--main-container">
@@ -50,24 +54,6 @@ export const Home = () => {
       </section>
       <section className="Home--right-container">
         <Outlet />
-        <div className="Home--buttons-container">
-          <button
-            disabled={currentPage === 1}
-            type="button"
-            onClick={() => dispatch(previousPage())}
-          >
-            Previous Page
-          </button>
-
-          <h4>Page {currentPage} out of 8</h4>
-          <button
-            disabled={currentPage === 8}
-            type="button"
-            onClick={() => dispatch(nextPage())}
-          >
-            Next Page
-          </button>
-        </div>
       </section>
     </div>
   );

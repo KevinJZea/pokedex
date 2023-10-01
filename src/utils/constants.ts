@@ -1,5 +1,5 @@
-export const LIMIT = 20;
-export const OFFSET = 0;
+export const MAX_LIMIT = 150;
+export const LIMIT_PER_PAGE = 20;
 
 export const BASE_URL = `https://pokeapi.co/api/v2/pokemon`;
 export const IMAGE_URL = (pokemonId: string) =>

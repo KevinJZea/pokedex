@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import pokemonsReducer from './pokemonsReducer';
+import displayedPokemonsReducer from './displayedPokemonsReducer';
 import selectedPokemonReducer from './selectedPokemonReducer';
 import storedPokemonsReducer from './storedPokemonsReducer';
 import currentPageReducer from './currentPageReducer';
 
 export const store = configureStore({
   reducer: {
-    pokemons: pokemonsReducer,
+    displayedPokemons: displayedPokemonsReducer,
     selectedPokemon: selectedPokemonReducer,
     storedPokemons: storedPokemonsReducer,
     currentPage: currentPageReducer,

@@ -7,20 +7,27 @@ import { setSelectedPokemon } from '../../store/selectedPokemonReducer';
 
 export const PokemonsList = () => {
   const dispatch = useDispatch();
-  const pokemons = useSelector(
-    (state: RootState) => state.pokemons
+
+  const displayedPokemons = useSelector(
+    (state: RootState) => state.displayedPokemons
   ) as Pokemon[];
 
   return (
-    <>
-      {pokemons.map((pokemon) => (
-        <PokemonCard
-          key={pokemon.name}
-          name={pokemon.name}
-          url={pokemon.url}
-          onClick={() => dispatch(setSelectedPokemon(pokemon))}
-        />
-      ))}
-    </>
+    <section className="PokemonsList--main-container">
+      {displayedPokemons.length > 0 ? (
+        <section className="PokemonsList--container">
+          {displayedPokemons.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.name}
+              name={pokemon.name}
+              url={pokemon.url}
+              onClick={() => dispatch(setSelectedPokemon(pokemon))}
+            />
+          ))}
+        </section>
+      ) : (
+        <h2>Loading Pok&eacute;mons...</h2>
+      )}
+    </section>
   );
 };
