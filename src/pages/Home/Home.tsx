@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -24,21 +24,27 @@ export const Home = () => {
   const selectedPokemonId = getPokemonIdFromUrl(selectedPokemon.url);
 
   const isFirstRender = useRef(true);
+  const firstRenderValidation = useMemo(
+    () => isFirstRender.current && displayedPokemons.length === 0,
+    [displayedPokemons.length]
+  );
+  const goOnRendersValidation = useMemo(
+    () => !isFirstRender.current && displayedPokemons.length > 0,
+    [displayedPokemons.length]
+  );
 
   useEffect(() => {
     const callApi = async () => {
       const pokemons = await getPokemons(currentPage);
       dispatch(setDisplayedPokemons(pokemons));
     };
-    if (isFirstRender.current && displayedPokemons.length === 0) {
+    if (firstRenderValidation) {
       isFirstRender.current = false;
       callApi();
     }
 
-    if (!isFirstRender.current && displayedPokemons.length > 0) {
-      callApi();
-    }
-  }, [dispatch, isFirstRender, displayedPokemons, currentPage]);
+    if (goOnRendersValidation) callApi();
+  }, [dispatch, currentPage, firstRenderValidation, goOnRendersValidation]);
 
   return (
     <div className="Home--main-container">

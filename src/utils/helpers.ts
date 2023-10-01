@@ -7,7 +7,12 @@ export const getPokemonIdFromUrl = (url: string): string => {
   const urlDividedBySlashes = url.split('/');
   const pokemonId = urlDividedBySlashes.splice(-2)[0];
 
-  console.log({ url });
-
   return pokemonId;
+};
+
+export const customizePokemonTypes = (types: PokemonTypes[]): string => {
+  return types.reduce((accum, pokemonType, index) => {
+    if (index === 0) return capitalize(pokemonType.type.name);
+    return `${accum}/${capitalize(pokemonType.type.name)}`;
+  }, '');
 };

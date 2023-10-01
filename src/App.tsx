@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
+import { PokemonsListPage } from './pages/PokemonsListPage/PokemonsListPage';
+import { PokemonProfilePage } from './pages/PokemonProfilePage/PokemonProfilePage';
 import { NotFound } from './pages/NotFound/NotFound';
-import { PokemonProfile } from './components/PokemonProfile/PokemonProfile';
 
 import './App.css';
-import { PokemonsListPage } from './pages/PokemonsListPage/PokemonsListPage';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           />
           <Route
             path=":id"
-            element={<PokemonProfile />}
+            element={<PokemonProfilePage />}
           />
         </Route>
         <Route

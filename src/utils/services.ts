@@ -1,4 +1,9 @@
-import { BASE_URL, LIMIT_PER_PAGE, MAX_LIMIT } from './constants';
+import {
+  BASE_URL,
+  LIMIT_PER_PAGE,
+  MAX_LIMIT,
+  POKEMON_DATA_URL,
+} from './constants';
 
 export const getPokemons = async (currentPage: number) => {
   const offset = (currentPage - 1) * LIMIT_PER_PAGE;
@@ -13,4 +18,10 @@ export const getPokemons = async (currentPage: number) => {
   const data = await response.json();
 
   return data.results;
+};
+
+export const getPokemonData = async (pokemonId: string) => {
+  const response = await fetch(POKEMON_DATA_URL(pokemonId));
+  const data = await response.json();
+  return data;
 };
