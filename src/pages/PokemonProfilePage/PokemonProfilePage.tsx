@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { PokemonProfile } from '../../components/PokemonProfile/PokemonProfile';
+import { PokemonProfile } from '../../components/PokemonProfile';
 import './PokemonProfilePage.css';
 
 export const PokemonProfilePage = () => {
@@ -9,7 +9,7 @@ export const PokemonProfilePage = () => {
         className="PokemonProfilePage--go-back"
         to="/pokemons"
       >
-        Go Back
+        &lt;- Go Back
       </NavLink>
       <PokemonProfile />
     </section>

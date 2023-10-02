@@ -1,0 +1,1 @@
+export { PokemonsListPage } from './PokemonsListPage';

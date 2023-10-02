@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { PokemonCard } from '../../components/PokemonCard/PokemonCard';
+import { PokemonCard } from '../../components/PokemonCard';
 import { RootState } from '../../store/store';
-
-import './PokemonsList.css';
 import { setSelectedPokemon } from '../../store/selectedPokemonReducer';
+import './PokemonsList.css';
 
 export const PokemonsList = () => {
   const dispatch = useDispatch();

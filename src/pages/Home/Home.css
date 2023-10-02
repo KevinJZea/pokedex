@@ -19,7 +19,6 @@
 .Home--right-container {
   position: relative;
   height: 100%;
-  padding-left: 12px;
 }
 
 @media (min-width: 770px) {
@@ -37,5 +36,6 @@
 
   .Home--right-container {
     background-color: #fff;
+    padding-left: 12px;
   }
 }

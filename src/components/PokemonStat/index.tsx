@@ -1,0 +1,1 @@
+export { PokemonStat } from './PokemonStat';

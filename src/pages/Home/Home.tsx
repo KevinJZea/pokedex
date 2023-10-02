@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { Suspense, useEffect, useMemo, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,7 +6,11 @@ import { RootState } from '../../store/store';
 import { setDisplayedPokemons } from '../../store/displayedPokemonsReducer';
 
 import { IMAGE_URL } from '../../utils/constants';
-import { capitalize, getPokemonIdFromUrl } from '../../utils/helpers';
+import {
+  capitalize,
+  customizePokemonName,
+  getPokemonIdFromUrl,
+} from '../../utils/helpers';
 import { getPokemons } from '../../utils/services';
 
 import './Home.css';
@@ -56,10 +60,12 @@ export const Home = () => {
           alt={capitalize(selectedPokemon.name)}
           width={250}
         />
-        <h2>{capitalize(selectedPokemon.name)}</h2>
+        <h2>{customizePokemonName(selectedPokemon.name)}</h2>
       </section>
       <section className="Home--right-container">
-        <Outlet />
+        <Suspense fallback={<h3>Loading...</h3>}>
+          <Outlet />
+        </Suspense>
       </section>
     </div>
   );

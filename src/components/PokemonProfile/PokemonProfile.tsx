@@ -1,30 +1,48 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { PokemonStat } from '../PokemonStat';
+
 import { RootState } from '../../store/store';
-import { getPokemonData } from '../../utils/services';
-import { setSelectedPokemonData } from '../../store/selectedPokemonReducer';
+import {
+  cleanSelectedPokemonData,
+  setSelectedPokemonData,
+} from '../../store/selectedPokemonReducer';
+
 import {
   capitalize,
+  customizePokemonName,
   customizePokemonTypes,
   getPokemonIdFromUrl,
 } from '../../utils/helpers';
+import { getPokemonData } from '../../utils/services';
+
 import './PokemonProfile.css';
 
 export const PokemonProfile = () => {
   const dispatch = useDispatch();
+  const isFirstRender = useRef(true);
 
   const { name, url, data } = useSelector(
     (state: RootState) => state.selectedPokemon
   );
 
+  const callPokemonData = useCallback(async () => {
+    const pokemonUrl = getPokemonIdFromUrl(url);
+    const pokemonData = await getPokemonData(pokemonUrl);
+    dispatch(setSelectedPokemonData(pokemonData));
+  }, [dispatch, url]);
+
   useEffect(() => {
-    const callPokemonData = async () => {
-      const pokemonUrl = getPokemonIdFromUrl(url);
-      const pokemonData = await getPokemonData(pokemonUrl);
-      dispatch(setSelectedPokemonData(pokemonData));
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      callPokemonData();
+    }
+
+    return () => {
+      dispatch(cleanSelectedPokemonData());
     };
-    if (data) callPokemonData();
-  }, []);
+  }, [callPokemonData, dispatch]);
   console.log({ data });
 
   return (
@@ -38,7 +56,7 @@ export const PokemonProfile = () => {
               <span>Number:</span> {data.id}
             </p>
             <p>
-              <span>Name:</span> {capitalize(data.name)}
+              <span>Name:</span> {customizePokemonName(data.name)}
             </p>
             <p>
               <span>Height:</span> {data.height}
@@ -47,9 +65,31 @@ export const PokemonProfile = () => {
               <span>Weight:</span> {data.weight}
             </p>
           </div>
+
+          <section className="PokemonProfile--stats-abilities-container">
+            <div className="PokemonProfile--stats-container">
+              <h4 className="PokemonProfile--stats-title">Stats</h4>
+              <div className="PokemonProfile--stats">
+                {data.stats.map((stat) => (
+                  <PokemonStat
+                    key={stat.stat.name}
+                    {...stat}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="PokemonProfile--abilities-container">
+              <h4 className="PokemonProfile--abilities-title">Abilities</h4>
+              {data.abilities.map((ability) => (
+                <p key={ability.ability.name}>
+                  {capitalize(ability.ability.name)}
+                </p>
+              ))}
+            </div>
+          </section>
         </section>
       ) : (
-        <h2>Loading {capitalize(name)}'s Data...</h2>
+        <h2>Loading {customizePokemonName(name)}'s Data...</h2>
       )}
     </>
   );

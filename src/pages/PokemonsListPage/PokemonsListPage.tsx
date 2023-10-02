@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { PokemonsList } from '../../components/PokemonsList/PokemonsList';
+import { PokemonsList } from '../../components/PokemonsList';
 import { nextPage, previousPage } from '../../store/currentPageReducer';
 import { RootState } from '../../store/store';
 

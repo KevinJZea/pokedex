@@ -15,9 +15,16 @@ const selectedPokemonSlice = createSlice({
       ...state,
       data: { ...action.payload },
     }),
+    cleanSelectedPokemonData: (state) => ({
+      ...state,
+      data: undefined,
+    }),
   },
 });
 
-export const { setSelectedPokemon, setSelectedPokemonData } =
-  selectedPokemonSlice.actions;
+export const {
+  setSelectedPokemon,
+  setSelectedPokemonData,
+  cleanSelectedPokemonData,
+} = selectedPokemonSlice.actions;
 export default selectedPokemonSlice.reducer;

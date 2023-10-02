@@ -1,0 +1,1 @@
+export { PokemonProfilePage } from './PokemonProfilePage';

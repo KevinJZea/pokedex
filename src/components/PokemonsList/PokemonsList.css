@@ -11,7 +11,6 @@
   margin-bottom: 36px;
 
   width: 100%;
-  padding-left: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +20,7 @@
 
 @media (min-width: 770px) {
   .PokemonsList--container {
+    padding-left: 24px;
     margin-bottom: 0;
   }
 }

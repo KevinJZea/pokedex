@@ -1,8 +1,24 @@
+import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
-import { PokemonsListPage } from './pages/PokemonsListPage/PokemonsListPage';
-import { PokemonProfilePage } from './pages/PokemonProfilePage/PokemonProfilePage';
-import { NotFound } from './pages/NotFound/NotFound';
+
+const PokemonProfilePage = lazy(() =>
+  import('./pages/PokemonProfilePage').then((module) => ({
+    default: module.PokemonProfilePage,
+  }))
+);
+
+const PokemonsListPage = lazy(() =>
+  import('./pages/PokemonsListPage').then((module) => ({
+    default: module.PokemonsListPage,
+  }))
+);
+
+const NotFound = lazy(() =>
+  import('./pages/NotFound').then((module) => ({
+    default: module.NotFound,
+  }))
+);
 
 import './App.css';
 

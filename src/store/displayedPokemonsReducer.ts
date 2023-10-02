@@ -7,8 +7,10 @@ const displayedPokemonsSlice = createSlice({
   initialState,
   reducers: {
     setDisplayedPokemons: (_, action) => [...action.payload],
+    cleanDisplayedPokemons: () => [],
   },
 });
 
-export const { setDisplayedPokemons } = displayedPokemonsSlice.actions;
+export const { setDisplayedPokemons, cleanDisplayedPokemons } =
+  displayedPokemonsSlice.actions;
 export default displayedPokemonsSlice.reducer;

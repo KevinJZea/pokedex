@@ -5,10 +5,12 @@ interface Pokemon {
 }
 
 interface PokemonData {
+  abilities: PokemonAbility[];
   height: number;
   id: number;
   name: string;
-  types: PokemonTypes[];
+  stats: PokemonStat[];
+  types: PokemonType[];
   weight: number;
 }
 
@@ -18,7 +20,20 @@ interface PokemonCardProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-type PokemonTypes = {
+type PokemonType = {
   slot: number;
   type: { name: string; url: string };
+};
+
+type PokemonStat = {
+  base_stat: number;
+  effort: number;
+  stat: { name: string; url: string };
+};
+
+type PokemonAbility = {
+  ability: {
+    name: string;
+    url: string;
+  };
 };
