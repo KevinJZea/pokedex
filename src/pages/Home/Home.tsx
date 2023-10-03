@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../store/store';
 import { setDisplayedPokemons } from '../../store/displayedPokemonsReducer';
+import { storePokemons } from '../../store/storedPokemonsReducer';
 
 import { IMAGE_URL } from '../../utils/constants';
 import {
@@ -19,6 +20,10 @@ export const Home = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state: RootState) => state.currentPage);
 
+  const storedPokemons = useSelector(
+    (state: RootState) => state.storedPokemons
+  );
+
   const selectedPokemon = useSelector(
     (state: RootState) => state.selectedPokemon
   );
@@ -27,11 +32,14 @@ export const Home = () => {
   useEffect(() => {
     const callApi = async () => {
       const pokemons = await getPokemons(currentPage);
+      dispatch(storePokemons({ page: currentPage, pokemons }));
       dispatch(setDisplayedPokemons(pokemons));
     };
 
-    callApi();
-  }, [currentPage, dispatch]);
+    storedPokemons[currentPage]
+      ? dispatch(setDisplayedPokemons(storedPokemons[currentPage]))
+      : callApi();
+  }, [currentPage]);
 
   return (
     <div className="Home--main-container">
