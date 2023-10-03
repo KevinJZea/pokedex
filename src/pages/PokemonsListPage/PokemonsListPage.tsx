@@ -4,10 +4,21 @@ import { nextPage, previousPage } from '../../store/currentPageReducer';
 import { RootState } from '../../store/store';
 
 import './PokemonsListPage.css';
+import { cleanDisplayedPokemons } from '../../store/displayedPokemonsReducer';
 
 export const PokemonsListPage = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state: RootState) => state.currentPage);
+
+  const handlePreviousPage = () => {
+    dispatch(previousPage());
+    dispatch(cleanDisplayedPokemons());
+  };
+
+  const handleNextPage = () => {
+    dispatch(nextPage());
+    dispatch(cleanDisplayedPokemons());
+  };
 
   return (
     <section className="PokemonsListPage--main-container">
@@ -17,7 +28,7 @@ export const PokemonsListPage = () => {
           <button
             disabled={currentPage === 1}
             type="button"
-            onClick={() => dispatch(previousPage())}
+            onClick={handlePreviousPage}
           >
             Previous Page
           </button>
@@ -26,7 +37,7 @@ export const PokemonsListPage = () => {
           <button
             disabled={currentPage === 8}
             type="button"
-            onClick={() => dispatch(nextPage())}
+            onClick={handleNextPage}
           >
             Next Page
           </button>

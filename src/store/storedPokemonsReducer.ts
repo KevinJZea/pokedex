@@ -4,9 +4,9 @@ export type PokemonsObject = {
   [key: string]: Pokemon[];
 };
 
-interface StoredPokemonsState {
+type StoredPokemonsState = {
   pokemons: PokemonsObject;
-}
+};
 
 const initialState: StoredPokemonsState = {
   pokemons: {},

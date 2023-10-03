@@ -1,48 +1,20 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import { PokemonStat } from '../PokemonStat';
 
 import { RootState } from '../../store/store';
-import {
-  cleanSelectedPokemonData,
-  setSelectedPokemonData,
-} from '../../store/selectedPokemonReducer';
 
 import {
   customizePokemonName,
   customizePokemonTypes,
-  getPokemonIdFromUrl,
   removeHyphenAndCapitalize,
 } from '../../utils/helpers';
-import { getPokemonData } from '../../utils/services';
 
 import './PokemonProfile.css';
 
 export const PokemonProfile = () => {
-  const dispatch = useDispatch();
-  const isFirstRender = useRef(true);
-
-  const { name, url, data } = useSelector(
+  const { name, data } = useSelector(
     (state: RootState) => state.selectedPokemon
   );
-
-  const callPokemonData = useCallback(async () => {
-    const pokemonUrl = getPokemonIdFromUrl(url);
-    const pokemonData = await getPokemonData(pokemonUrl);
-    dispatch(setSelectedPokemonData(pokemonData));
-  }, [dispatch, url]);
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      callPokemonData();
-    }
-
-    return () => {
-      dispatch(cleanSelectedPokemonData());
-    };
-  }, [callPokemonData, dispatch]);
 
   return (
     <>

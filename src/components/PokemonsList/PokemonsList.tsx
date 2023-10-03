@@ -9,7 +9,7 @@ export const PokemonsList = () => {
 
   const displayedPokemons = useSelector(
     (state: RootState) => state.displayedPokemons
-  ) as Pokemon[];
+  );
 
   return (
     <section className="PokemonsList--main-container">

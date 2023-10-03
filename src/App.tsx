@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 const Home = lazy(() =>
   import('./pages/Home').then((module) => ({
@@ -29,14 +29,10 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route
           path="/"
-          element={<Navigate to="/pokemons" />}
-        />
-        <Route
-          path="/pokemons"
           element={<Home />}
         >
           <Route
@@ -48,12 +44,13 @@ function App() {
             element={<PokemonProfilePage />}
           />
         </Route>
+
         <Route
           path="*"
           element={<NotFound />}
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

@@ -18,7 +18,7 @@ export const PokemonCard = ({ name, url, onClick }: PokemonCardProps) => {
 
   const handleOnDoubleClick = () => {
     const pokemonId = getPokemonIdFromUrl(url);
-    navigate(`/pokemons/${pokemonId}`);
+    navigate(`/${pokemonId}`);
   };
 
   const handleOnClick = () => {
