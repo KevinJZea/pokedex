@@ -1,6 +1,11 @@
 import { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Home } from './pages/Home/Home';
+
+const Home = lazy(() =>
+  import('./pages/Home').then((module) => ({
+    default: module.Home,
+  }))
+);
 
 const PokemonProfilePage = lazy(() =>
   import('./pages/PokemonProfilePage').then((module) => ({

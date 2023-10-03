@@ -17,7 +17,7 @@ export const customizePokemonTypes = (types: PokemonType[]): string => {
   }, '');
 };
 
-const removeHyphenAndCapitalize = (text: string) => {
+export const removeHyphenAndCapitalize = (text: string) => {
   return text
     .split('-')
     .map((word) => capitalize(word))

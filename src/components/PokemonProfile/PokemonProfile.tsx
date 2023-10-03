@@ -10,10 +10,10 @@ import {
 } from '../../store/selectedPokemonReducer';
 
 import {
-  capitalize,
   customizePokemonName,
   customizePokemonTypes,
   getPokemonIdFromUrl,
+  removeHyphenAndCapitalize,
 } from '../../utils/helpers';
 import { getPokemonData } from '../../utils/services';
 
@@ -43,7 +43,6 @@ export const PokemonProfile = () => {
       dispatch(cleanSelectedPokemonData());
     };
   }, [callPokemonData, dispatch]);
-  console.log({ data });
 
   return (
     <>
@@ -82,7 +81,7 @@ export const PokemonProfile = () => {
               <h4 className="PokemonProfile--abilities-title">Abilities</h4>
               {data.abilities.map((ability) => (
                 <p key={ability.ability.name}>
-                  {capitalize(ability.ability.name)}
+                  {removeHyphenAndCapitalize(ability.ability.name)}
                 </p>
               ))}
             </div>
