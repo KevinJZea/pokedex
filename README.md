@@ -1,6 +1,6 @@
-# Pokédex
+# [Pokédex](https://pokedex.kevinjzea.com/)
 
-This is a Pokédex app built using React, TypeScript, Redux, React Router, and vanilla CSS. It uses the [PokéApi](https://pokeapi.co/) to fetch and display information about different Pokémon.
+This is a Pokédex app built using React, TypeScript, Redux, React Router, and vanilla CSS. It uses the [PokéApi](https://pokeapi.co/) to fetch and display information about different Pokémon. Go and take a look 👀 [here](https://pokedex.kevinjzea.com/).
 
 ## Features
 
