@@ -18,9 +18,32 @@
   gap: 6px;
 }
 
+.PokemonsList--PokemonCard-container {
+  width: 95%;
+  display: flex;
+  gap: 12px;
+}
+
+.PokemonsList--stats-button {
+  box-shadow: #ddd 1px 1px 2px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  color: hsl(0, 0%, 5%);
+  background-color: hsl(0, 0%, 80%);
+}
+
+.PokemonsList--stats-button:hover {
+  color: hsl(0, 0%, 5%);
+  background-color: hsl(0, 0%, 85%);
+}
+
 @media (min-width: 770px) {
   .PokemonsList--container {
     padding-left: 24px;
     margin-bottom: 0;
+  }
+
+  .PokemonsList--PokemonCard-container {
+    gap: 20px;
   }
 }

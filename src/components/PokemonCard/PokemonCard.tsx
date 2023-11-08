@@ -24,8 +24,10 @@ export const PokemonCard = ({ name, url, onClick }: PokemonCardProps) => {
   const handleOnClick = () => {
     clickCount.current++;
 
-    if (clickCount.current === 1) onClick();
-    else if (clickCount.current === 2) handleOnDoubleClick();
+    if (clickCount.current === 1) {
+      onClick();
+      window.scrollTo(0, 0);
+    } else if (clickCount.current === 2) handleOnDoubleClick();
 
     setTimeout(() => {
       clickCount.current = 0;

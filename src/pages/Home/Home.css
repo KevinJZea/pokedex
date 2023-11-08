@@ -16,6 +16,18 @@
   align-items: center;
 }
 
+.Home--left-container h1 {
+  display: none;
+}
+.Home--left-container h2 {
+  font-size: 2rem;
+}
+
+.Home--left-container h1,
+.Home--left-container h2 {
+  margin: 0;
+}
+
 .Home--right-container {
   position: relative;
   height: 100%;
@@ -32,6 +44,10 @@
     box-shadow: #d3d3d3 4px 4px 4px;
     background-color: #f8f8f8;
     z-index: 1;
+  }
+
+  .Home--left-container h1 {
+    display: block;
   }
 
   .Home--right-container {
